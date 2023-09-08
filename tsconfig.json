@@ -16,6 +16,20 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "database/database": [
+        "libs/database/src"
+      ],
+      "database/database/*": [
+        "libs/database/src/*"
+      ],
+      "correlationID/correlation-id": [
+        "libs/correlation-id/src"
+      ],
+      "correlationID/correlation-id/*": [
+        "libs/correlation-id/src/*"
+      ]
+    }
   }
 }
