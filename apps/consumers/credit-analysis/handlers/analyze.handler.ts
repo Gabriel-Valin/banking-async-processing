@@ -17,13 +17,14 @@ export class AnalyzeHandler {
   @SqsMessageHandler('credit-queue', false)
   public async handleMessage(message: Message) {
     if (message.Body) {
-      const cid = uuid()
-      this.correlationID.start(cid)
 
       const obj = JSON.parse(message.Body);
       this.logger.log("MESSAGE PROCESSING STARTING")
-      const { event, data } = JSON.parse(obj.Message)
+      const { cid, event, data } = JSON.parse(obj.Message)
+      this.correlationID.start(cid)
       const getCID = this.correlationID.getCID()
+      this.logger.log("CID PROVIDED: ", cid)
+      this.logger.log("CID CAPTURED: ", getCID)
 
       if (event == 'CREDIT_ANALYZE') {
         await new Promise(res => {
@@ -32,6 +33,8 @@ export class AnalyzeHandler {
             this.logger.log({ func: 'handleMessage', cid: getCID })
             this.func1()
             this.func2()
+            this.logger.log({ event, ...data })
+            this.logger.log(this.analysis)
             res(true)
           }, 5000)
         })

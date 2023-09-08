@@ -54,6 +54,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/correlation-id/tsconfig.lib.json"
       }
+    },
+    "producers": {
+      "type": "application",
+      "root": "apps/producers",
+      "entryFile": "main",
+      "sourceRoot": "apps/producers/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/producers/tsconfig.app.json"
+      }
     }
   }
 }
